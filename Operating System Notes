@@ -1,1 +1,61 @@
-Concepts
+CPU SCHEDULING:
+  CPU BOUND V/S INPUT BOUND
+  PARAMETRES: burst, arrival, exit, waiting, turnAroundTime, response TIME
+  
+  ALGORITHMS FOR SCHEDULINGS:
+    first come first serve
+    shortest job first scheduling (non premptive), shortest remaining time (premptive) : best average time(i guess)
+    priority scheduling(non premptive,premptive), ageing
+    round robbin : best response time
+
+PROCESS SYNCHRONIZATION:
+  RACE CONDITION : Several processes access and process the manipulations over the same data concurrently, 
+                   then the outcome depends on the particular ORDER in which the access takes place.
+  CRITICAL SECTION : Critical section is a code segment that can be accessed by only one process at a time. 
+                     Critical section contains shared variables which need to be synchronized to maintain 
+                     consistency of data variables
+                     i.e. area in program execution where hardware/software access shared resources is called critical section
+      Three conditions:
+        Mutual Exclusion, Progress, Bounded Waiting
+        
+      do {
+        ask process if he want to go in critical section
+        entry section     
+        critical section  
+        exit section      
+        remainder         
+      }
+      ----peterson solution, he used turn and flag[] variables
+   TO SOLVE CRITICAL SECTION, WE CAN USE :
+      SEMAPHORES (2 types,binary and counting) :  
+              A Semaphore is an integer variable, which can be accessed only through two operations wait() and signal().
+              QUESTION : Part 5.9 Previous year gate questions on Semaphores | Process synchronization | OS ON YOUTUBE
+       
+  MUTEX VS SEMAPHORE ( https://www.geeksforgeeks.org/mutex-vs-semaphore/ )-----NICE EXPLANATION QITH QUESTIONS
+
+What is a Thread?
+A thread is a path of execution within a process. A process can contain multiple threads. 
+Why Multithreading?
+  A thread is also known as lightweight process. The idea is to achieve parallelism by dividing a process into multiple threads. 
+  For example, in a browser, multiple tabs can be different threads. MS Word uses multiple threads: one thread to format the text, 
+  another thread to process inputs, etc. More advantages of multithreading are discussed below
+Process vs Thread?
+  The primary difference is that threads within the same process run in a shared memory space, 
+  while processes run in separate memory spaces.
+  Threads are not independent of one another like processes are, and as a result threads share with other 
+  threads their code section, data section, and OS resources (like open files and signals). But, like process, 
+  a thread has its own program counter (PC), register set, and stack space.
+  
+  DEADLOCKS AND ITS PREVENTION:
+    Deadlock can arise if following four conditions hold simultaneously (Necessary Conditions) 
+      Mutual Exclusion: One or more than one resource are non-sharable (Only one process can use at a time)
+      Hold and Wait: A process is holding at least one resource and waiting for resources.
+      No Preemption: A resource cannot be taken from a process unless the process releases the resource.
+      Circular Wait: A set of processes are waiting for each other in circular form.
+
+    Methods for handling deadlock
+      There are three ways to handle deadlock
+      1) Deadlock prevention or avoidance: The idea is to not let the system into deadlock state.
+      2) Deadlock detection and recovery: Let deadlock occur, then do preemption to handle it once occurred.
+      3) Ignore the problem all together: If deadlock is very rare, then let it happen and reboot the system. 
+         This is the approach that both Windows and UNIX take.
