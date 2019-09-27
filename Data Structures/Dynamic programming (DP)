@@ -1,6 +1,6 @@
 {
   "list_of_questions" : [
-    ["Question" : "Given a string s, find the longest palindromic subsequence's length in s. You may assume that the maximum length of s is 1000."
+    { "Question" : "Given a string s, find the longest palindromic subsequence's length in s. You may assume that the maximum length of s is 1000."
       ,"Solution": 
           "class Solution:
             def LPS(self, s, low, high, mat):
@@ -32,15 +32,55 @@
                   This is a very elegant method to find LPS"
       ,"SourceToLearn": "https://leetcode.com/problems/longest-palindromic-subsequence/"
    
-    ],
-    ["Question" : ""
+    },
+    {"Question" : "Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal."
+    ,"Solution" : "class Solution:
+    def util(self, s,n, ind, reqSum, currSum, mat):
+        if ind == n:
+            if currSum == reqSum:
+                mat[ind][currSum] = True
+            else:
+                mat[ind][currSum] = False
+            return mat[ind][currSum]
+        
+        if mat[ind][currSum] != -1:         
+            return mat[ind][currSum]
+        
+        if currSum + s[ind] == reqSum:
+            mat[ind][currSum] = True
+            return mat[ind][currSum]
+        if currSum + s[ind] < reqSum:
+            mat[ind][currSum] =  (self.util(s, n, ind+1, reqSum, currSum+s[ind], mat) 
+                                or self.util( s, n, ind+1, reqSum, currSum, mat))
+        
+            return mat[ind][currSum]
+    def Subset(self,s,n,total_sum):
+        mat = []
+        for i in range(n+1):
+            a = []
+            for j in range((total_sum//2) + 1):
+                a.append(-1)
+            mat.append(a)
+        
+        ans = self.util(s,n,0,total_sum//2, 0, mat)
+        return ans    
+    def canPartition(self, nums: List[int]) -> bool:
+        n = len(nums)
+        total_sum = sum(nums)
+        if total_sum%2 == 0:
+            return self.Subset(nums,n,total_sum)
+        else:
+            return False"
+    ,"Concept" : "Its a kind of a problem where we shall have to follow like, either we can add the value in sum or not, so we recurse this way and also make a matrix to store the results"
+    , "SourceToLearn" : "https://leetcode.com/problems/partition-equal-subset-sum/"
+    }
+    ,{
+    "Question" : ""
     ,"Solution" : ""
     ,"Concept" : ""
     , "SourceToLearn" : ""
-    ]
+    }
+    
     
     ]
-
-  ]
-
 }
