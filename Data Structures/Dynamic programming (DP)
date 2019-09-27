@@ -1,6 +1,45 @@
 {
   "list_of_questions" : [
-    ["Questin : ", "Solution: ", "Concept: ", "SourceToLearn: []"]
+    ["Question" : "Given a string s, find the longest palindromic subsequence's length in s. You may assume that the maximum length of s is 1000."
+      ,"Solution": 
+          "class Solution:
+            def LPS(self, s, low, high, mat):
+                if low > high:
+                    return 0
+                if low == high:
+                    mat[low][high] += 1
+                    return 1
+                if mat[low][high] != 0:
+                    return mat[low][high]
+                if s[low] == s[high]:
+                    mat[low][high] = 2 + self.LPS(s, low+1, high-1, mat)
+                else:
+                    mat[low][high] = max( self.LPS(s, low+1, high, mat), self.LPS(s, low, high-1, mat) )
+
+                return mat[low][high]
+
+            def longestPalindromeSubseq(self, s: str) -> int:
+                n = len(s)
+                mat = []
+                for i in range(n):
+                    a = []
+                    for j in range(n):
+                        a.append(0)
+                    mat.append(a)
+                self.LPS(s, 0, n-1, mat)
+                return mat[0][n-1]"
+      ,"Concept": "We can take two pointers which can point to first and last character in a string.
+                  This is a very elegant method to find LPS"
+      ,"SourceToLearn": "https://leetcode.com/problems/longest-palindromic-subsequence/"
+   
+    ],
+    ["Question" : ""
+    ,"Solution" : ""
+    ,"Concept" : ""
+    , "SourceToLearn" : ""
+    ]
+    
+    ]
 
   ]
 
