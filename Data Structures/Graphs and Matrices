@@ -1,11 +1,66 @@
 {
   "list_of_questions_of matrix" : [
-    ["Question : ", "Solution: ", "Concept: ", "SourceToLearn: []"]
+    {
+      "Question" : "Given a sorted dictionary of an alien language, find order of characters",
+      "Solution" : "
+        from collections import defaultdict
+class Graph:
+    def __init__(self):
+        self.graph = defaultdict(list)
+    def addEdge(self,u,v):
+        self.graph[u].append(v)
+    def charToInt(self, ch):
+        return ord(ch)-ord('a')
+    def addEdgeFromChar(self,u,v):
+        self.graph[self.charToInt(u)].append(self.charToInt(v))
 
+def util(g, n, toporder, vis, node):
+    vis[node] = True
+    for i in g[node]:
+        if vis[i] == False:
+            util(g, n, toporder, vis, i)
+    toporder.append(node)
+
+def topoSort(g,n):
+    toporder = []
+    vis = [False]*n
+    
+    for i in range(n):
+        if vis[i] == False:
+            util(g, n, toporder, vis, i)
+    return list(reversed(toporder))
+
+def AlienDict(n, k, words):
+    g = Graph()
+    
+    for i in range(n-1):
+        w1 = words[i]
+        w2 = words[i+1]
+        for j in range(min(len(w1), len(w2))):
+            if w1[j] != w2[j]:
+                g.addEdgeFromChar(w1[j], w2[j])
+                break
+    topologicalSortedOrder = topoSort(g.graph,k)
+    alienLanguageOrder = ""
+    for i in range(k):
+        alienLanguageOrder += chr(97 + topologicalSortedOrder[i])
+
+    return alienLanguageOrder
+t = int(input())
+for _ in range(t):
+    n,k = map(int, input().split())
+    words = list(input().split())
+    print(AlienDict(n,k,words))
+    
+      ",
+      "Concept" : "Topological Sort, Preecedence, Graph, DFS",
+      "SourceToLearn": "https://practice.geeksforgeeks.org/problems/alien-dictionary/1"
+    },{
+      "Question" : "",
+      "Solution" : "",
+      "Concept" : "",
+      "SourceToLearn": ""
+    }
+    
   ],
-  "list_of_questions_of graphs" : [
-    ["Question : ", "Solution: ", "Concept: ", "SourceToLearn: []"]
-
-  ]
-
-}
+  
