@@ -1,0 +1,6 @@
+BINARY SEARCH TREES:
+  Construct BST from given preorder traversal.
+    Tip :  take care of min and max and you got it.
+  Check if each internal node of a BST has exactly one child.
+    Tip : see its BST, BST have property, use that. Assume you are always given a valid bst traversal.
+  
