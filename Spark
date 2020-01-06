@@ -1,0 +1,8 @@
+Before dot, there will always be a DataFrame
+.take(param)                 # returns a list   ,param is integer
+.printSchema()               # it shows columns as a tree format
+.describe(param)             # it returns the list of coloumns and their type   ,param is integer
+.describe(param).show()      # will show us the values of count, min, max, mean, stdDeviation for all the coluomns    ,param is column name
+.count()                     # will count the number of rows
+.select(param).dropDuplicates().sort(param).show()   # as depicting, param is column name
+.select([list of params]).where(field == **).collect()  # we can also pass list of coloumn names, with where clause 
